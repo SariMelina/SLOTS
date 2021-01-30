@@ -1,32 +1,38 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="container">
+    <div class="jumbotron">   
+      <button class="btn btn-primary"
+      @click="componenteSeleccionado='LogIn'">Iniciar Sesión</button>
+      <button class="btn btn-primary"
+      @click="componenteSeleccionado='ChangePass'">Cambiar Contraseña</button>
+      <keep-alive>
+        <component v-bind:is="componenteSeleccionado"></component>
+      </keep-alive>
     </div>
-    <router-view />
   </div>
 </template>
 
+<script>
+import ShowForm from './components/ShowForm.components'
+import LogIn from './components/LogIn.component'
+import ChangePass from './components/ChangePass.coponents'
+
+export default {
+  components: {
+    ShowForm,
+    LogIn,
+    ChangePass
+  },
+  data() {
+    return {
+      componenteSeleccionado: 'LogIn'
+    }
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  h3{
+    color:green
+  }
 </style>
